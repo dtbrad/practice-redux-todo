@@ -19,8 +19,8 @@ class App extends Component {
       <div className="App">
         <Provider store={store}>
           <div>
-            <ToDos />
             <AddToDo />
+            <ToDos />
           </div>
         </Provider>
       </div>
