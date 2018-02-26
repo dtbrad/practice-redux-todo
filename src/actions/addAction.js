@@ -1,6 +1,6 @@
-export function addToDoAction(text) {
+export function addAction(text) {
   return {
     type: 'ADD_A_TODO',
     text,
   }
-}
+};

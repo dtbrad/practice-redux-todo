@@ -1,21 +1,34 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { ListGroup } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { daniel } from '../actions/actions';
+import ToDo from './ToDo';
 
-const ToDos = ({ todos }) => {
-  const list = todos.todos.map(item => <li key={item}>{item}</li>);
+const ToDos = ({ todos, visibility }) => {
+
+  let list;
+
+  if (visibility === 'all') {
+    list = todos;
+  } else if (visibility === 'completed') {
+    list = todos.filter(item => item.completed);
+  } else if (visibility === 'uncompleted') {
+    list = todos.filter(item => !item.completed);
+  };
+
+  const formattedList = list.map(todo => <ToDo key={todo.val} todo={todo} />)
 
   return (
-    <div>
-      {list}
-    </div>
+    <ListGroup>
+      {formattedList}
+    </ListGroup>
   )
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = ({ todos }) => {
   return ({
-    todos: state,
+    todos: todos.todos,
+    visibility: todos.visibility,
+
   })
 };
 

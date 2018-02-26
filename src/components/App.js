@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { Grid } from 'react-bootstrap';
 import ToDos from './ToDos';
 import AddToDo from './AddToDo';
 import reducer from '../reducers';
+import Filter from './Filter';
 
 const store = createStore(
   reducer, 
@@ -18,10 +20,11 @@ class App extends Component {
     return (
       <div className="App">
         <Provider store={store}>
-          <div>
+          <Grid>
             <AddToDo />
             <ToDos />
-          </div>
+            <Filter />
+          </Grid>
         </Provider>
       </div>
     );
