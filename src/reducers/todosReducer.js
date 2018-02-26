@@ -11,7 +11,8 @@ const initialState = {
 const todos = (state = initialState, action) => {
   switch (action.type) {
   case 'ADD_A_TODO':
-    const newState = [...state, { val: action.text, completed: false }]
+    const newState = {...state, todos: [...state.todos, { id: uniqueId(), val: action.text, completed: false }] }
+    debugger;
     return newState
   case 'TOGGLE_TODO':
     const newState1 = { ...state, todos: state.todos.map(todo => todo.val === action.val ? {...todo, completed: !todo.completed} : todo) };
